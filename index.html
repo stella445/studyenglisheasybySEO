@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko">
- <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260826-23-89b1525","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/50d846425a1e5082.telemetry_sdk.js" integrity="sha512-Otbex+ztlVbcEGql0rXGd/3E3ee/hqAntg6DeuUEMG6pIPbXGOSvZbFZVzknAXi1tH/itQ+ijEhOTr2aWj6CXg=="></script>
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영어 본문 빈칸 채우기 학습기</title>
@@ -25,11 +25,12 @@
       min-width: 320px;
       color: var(--ink);
       font-family: "DM Sans", sans-serif;
+      background-color: var(--paper);
     }
 
     .app-shell {
       width: 100%;
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      min-height: 100vh;
       position: relative;
       overflow: hidden;
     }
@@ -99,13 +100,6 @@
     .action-button:hover {
       transform: translateY(-1px);
       filter: brightness(0.98);
-    }
-
-    .mode-button:focus-visible,
-    .action-button:focus-visible,
-    .blank-input:focus-visible {
-      outline: 3px solid rgba(223, 108, 81, 0.62);
-      outline-offset: 3px;
     }
 
     .mode-button {
@@ -183,60 +177,97 @@
       .quiz-copy { font-size: 1rem; line-height: 2.8; }
     }
   </style>
-  <script src="/_sdk/b3bf9e8ac58e6ad6.data_sdk.js" type="text/javascript" integrity="sha512-otc1u9NYq9Ms5Jt//7vmhrrqR5CLPr8Jdgs6741gqniClfLMcfmC+jK/cKuQdhLv6G0esJ/FzaMS9tv0T/vj/Q=="></script>
-  <script src="/_sdk/a27879be4562f807.resizing_sdk.js" type="text/javascript" integrity="sha512-trcxRwz+QLrzK0Dqg95xqVRryR7WtWui2YopXyzOIr3WMde3j/xCRgT63/b/EAg7klDsAOuHzoRgoryhwm8QFw=="></script>
  </head>
- <body data-template-id="__page-root">
+ <body>
   <div class="app-shell">
    <main class="main-content">
     <header class="mb-7 sm:mb-8">
-     <div class="mb-3 flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-[#df6c51]" aria-hidden="true"></span> <span data-template-id="practice-badge" class="canva-tag text-xs font-bold tracking-[0.18em]"></span>
+     <div class="mb-3 flex items-center gap-2">
+      <span class="h-2.5 w-2.5 rounded-full bg-[#df6c51]" aria-hidden="true"></span>
+      <span class="text-xs font-bold tracking-[0.18em] text-[#df6c51]">ENGLISH STUDY</span>
      </div>
-     <h1 data-template-id="app-title" class="canva-text display-font font-bold leading-tight"></h1>
-     <p data-template-id="app-subtitle" class="canva-text mt-3 max-w-2xl leading-relaxed"></p>
+     <h1 class="display-font text-3xl font-bold leading-tight sm:text-4xl">영어 본문 빈칸 학습기</h1>
+     <p class="mt-3 max-w-2xl text-base leading-relaxed text-[#66717a]">본문을 입력하고 난이도를 선택하면 자동으로 빈칸 문제지를 만들어 줍니다.</p>
     </header>
-    <section data-template-id="source-panel" class="canva-panel paper-panel bg-[#fffcf4] p-5 sm:p-6" aria-labelledby="source-title">
+
+    <section class="paper-panel bg-[#fffcf4] p-5 sm:p-6" aria-labelledby="source-title">
      <div class="mb-4">
-      <h2 data-template-id="source-title" class="canva-text font-bold"></h2>
-      <p data-template-id="source-helper" class="canva-text mt-1.5 leading-relaxed"></p>
-     </div><label for="source-text" class="sr-only">영어 본문 입력</label> <textarea id="source-text" data-template-id="source-text" class="canva-input source-area w-full rounded-xl border border-[#d9d2c3] bg-white p-4 leading-relaxed" spellcheck="true"></textarea>
+      <h2 id="source-title" class="text-lg font-bold">1. 영어 본문 입력</h2>
+      <p class="mt-1.5 text-sm text-[#66717a]">학습할 영어 지문을 복사해서 아래 상자에 붙여넣어 주세요.</p>
+     </div>
+     <label for="source-text" class="sr-only">영어 본문 입력</label>
+     <textarea id="source-text" class="source-area w-full rounded-xl border border-[#d9d2c3] bg-white p-4 leading-relaxed" placeholder="여기에 영어 본문을 입력하세요..." spellcheck="true"></textarea>
+
      <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <p id="input-message" class="min-h-[1.25rem] text-sm font-medium text-[#a74131]" aria-live="polite"></p><button id="generate-button" data-template-id="generate-button" class="canva-button action-button inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-bold" type="button"> <i data-lucide="sparkles" style="width:18px;height:18px" aria-hidden="true"></i> <span data-template-id="generate-button-label" class="canva-text"></span> </button>
+      <p id="input-message" class="min-h-[1.25rem] text-sm font-medium text-[#a74131]" aria-live="polite"></p>
+      <button id="generate-button" class="action-button inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f766e] px-5 py-3 font-bold text-white shadow-md" type="button">
+       <i data-lucide="sparkles" style="width:18px;height:18px" aria-hidden="true"></i>
+       <span>빈칸 문제 만들기</span>
+      </button>
      </div>
     </section>
+
     <section class="mt-5" aria-labelledby="level-title">
      <div class="mb-3 flex items-center justify-between gap-4">
-      <h2 data-template-id="level-title" class="canva-text font-bold"></h2><span id="level-status" class="text-sm font-bold text-[#0f766e]" aria-live="polite">0단계 선택됨</span>
+      <h2 id="level-title" class="text-lg font-bold">2. 난이도 선택</h2>
+      <span id="level-status" class="text-sm font-bold text-[#0f766e]" aria-live="polite">0단계 선택됨</span>
      </div>
-     <div class="grid grid-cols-2 gap-2 sm:grid-cols-4"><button id="level-0" data-template-id="level-zero-button" class="canva-button mode-button is-active rounded-xl bg-[#e4f4ef] px-3 py-3 text-left" type="button" aria-pressed="true"> <span data-template-id="level-zero-name" class="canva-text block font-bold"></span> <span data-template-id="level-zero-detail" class="canva-text mt-0.5 block"></span> </button> <button id="level-1" data-template-id="level-one-button" class="canva-button mode-button rounded-xl bg-[#fffcf4] px-3 py-3 text-left" type="button" aria-pressed="false"> <span data-template-id="level-one-name" class="canva-text block font-bold"></span> <span data-template-id="level-one-detail" class="canva-text mt-0.5 block"></span> </button> <button id="level-2" data-template-id="level-two-button" class="canva-button mode-button rounded-xl bg-[#fffcf4] px-3 py-3 text-left" type="button" aria-pressed="false"> <span data-template-id="level-two-name" class="canva-text block font-bold"></span> <span data-template-id="level-two-detail" class="canva-text mt-0.5 block"></span> </button> <button id="level-3" data-template-id="level-three-button" class="canva-button mode-button rounded-xl bg-[#fffcf4] px-3 py-3 text-left" type="button" aria-pressed="false"> <span data-template-id="level-three-name" class="canva-text block font-bold"></span> <span data-template-id="level-three-detail" class="canva-text mt-0.5 block"></span> </button>
+     <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <button id="level-0" class="mode-button is-active rounded-xl bg-[#fffcf4] p-3 text-left border border-[#d9d2c3]" type="button">
+       <span class="block font-bold">0단계</span>
+       <span class="mt-0.5 block text-xs">문법/전치사 중심</span>
+      </button>
+      <button id="level-1" class="mode-button rounded-xl bg-[#fffcf4] p-3 text-left border border-[#d9d2c3]" type="button">
+       <span class="block font-bold">1단계</span>
+       <span class="mt-0.5 block text-xs">약 30% 빈칸</span>
+      </button>
+      <button id="level-2" class="mode-button rounded-xl bg-[#fffcf4] p-3 text-left border border-[#d9d2c3]" type="button">
+       <span class="block font-bold">2단계</span>
+       <span class="mt-0.5 block text-xs">약 50% 빈칸</span>
+      </button>
+      <button id="level-3" class="mode-button rounded-xl bg-[#fffcf4] p-3 text-left border border-[#d9d2c3]" type="button">
+       <span class="block font-bold">3단계</span>
+       <span class="mt-0.5 block text-xs">약 70% 빈칸</span>
+      </button>
      </div>
     </section>
-    <section id="empty-view" data-template-id="empty-panel" class="canva-panel paper-panel mt-5 bg-[#182530] px-6 py-9 text-center sm:px-10" aria-labelledby="empty-title">
-     <div class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#28404d] text-[#f6c9af]" aria-hidden="true"><i data-lucide="book-open-check" style="width:22px;height:22px"></i>
+
+    <section id="empty-view" class="paper-panel mt-5 bg-[#182530] px-6 py-9 text-center text-white sm:px-10">
+     <div class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#28404d] text-[#f6c9af]" aria-hidden="true">
+      <i data-lucide="book-open-check" style="width:22px;height:22px"></i>
      </div>
-     <h2 data-template-id="empty-title" class="canva-text font-bold"></h2>
-     <p data-template-id="empty-description" class="canva-text mx-auto mt-2 max-w-md leading-relaxed"></p>
+     <h2 class="text-xl font-bold">아직 생성된 문제가 없습니다</h2>
+     <p class="mx-auto mt-2 max-w-md text-sm leading-relaxed text-gray-300">위 상자에 본문을 넣고 '빈칸 문제 만들기' 버튼을 눌러보세요!</p>
     </section>
-    <section id="quiz-view" data-template-id="quiz-panel" class="canva-panel hidden-view paper-panel mt-5 bg-[#fffcf4] p-5 sm:p-7" aria-labelledby="quiz-title">
+
+    <section id="quiz-view" class="hidden-view paper-panel mt-5 bg-[#fffcf4] p-5 sm:p-7">
      <div class="flex flex-col gap-3 border-b border-[#e2dbcd] pb-4 sm:flex-row sm:items-start sm:justify-between">
       <div>
-       <h2 data-template-id="quiz-title" class="canva-text font-bold"></h2>
-       <p data-template-id="quiz-helper" class="canva-text mt-1.5 leading-relaxed"></p>
+       <h2 class="text-xl font-bold">빈칸 채우기 연습</h2>
+       <p class="mt-1.5 text-sm text-[#66717a]">빈칸에 알맞은 단어를 입력하고 Enter를 누르세요.</p>
       </div>
-      <div id="progress-pill" class="shrink-0 rounded-full bg-[#e4f4ef] px-3 py-1.5 text-sm font-bold text-[#0f766e]" aria-live="polite">
+      <div id="progress-pill" class="shrink-0 rounded-full bg-[#e4f4ef] px-3 py-1.5 text-sm font-bold text-[#0f766e]">
        빈칸 0개
       </div>
      </div>
      <div id="quiz-content" class="quiz-copy py-6" aria-live="polite"></div>
      <div class="flex flex-col-reverse gap-3 border-t border-[#e2dbcd] pt-4 sm:flex-row sm:items-center sm:justify-between">
       <p id="result-message" class="min-h-[1.5rem] text-sm font-bold text-[#0f766e]" aria-live="polite"></p>
-      <div class="flex gap-2"><button id="reset-button" data-template-id="reset-button" class="canva-button action-button inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 font-bold" type="button"> <i data-lucide="refresh-cw" style="width:16px;height:16px" aria-hidden="true"></i> <span data-template-id="reset-button-label" class="canva-text"></span> </button> <button id="check-button" data-template-id="check-button" class="canva-button action-button inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 font-bold" type="button"> <i data-lucide="check-circle-2" style="width:17px;height:17px" aria-hidden="true"></i> <span data-template-id="check-button-label" class="canva-text"></span> </button>
+      <div class="flex gap-2">
+       <button id="reset-button" class="action-button inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gray-200 px-4 py-3 font-bold text-gray-700" type="button">
+        <i data-lucide="refresh-cw" style="width:16px;height:16px" aria-hidden="true"></i>
+        <span>다시 풀기</span>
+       </button>
+       <button id="check-button" class="action-button inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#0f766e] px-4 py-3 font-bold text-white" type="button">
+        <i data-lucide="check-circle-2" style="width:17px;height:17px" aria-hidden="true"></i>
+        <span>정답 확인</span>
+       </button>
       </div>
      </div>
     </section>
    </main>
   </div>
-  <script src="/_sdk/489148d8756906ef.editing_sdk.js" integrity="sha512-hxxSbMNp1t+UEu3j/dIQUU4MJnmsCo0Gs3iQVVS706vrCJ3Yt2+ySOlfJEaPyiyQVLjZRmn1dNVqg6M40VZZHQ=="></script>
+
   <script>
     const levelRates = { 1: 0.3, 2: 0.5, 3: 0.7 };
     const grammarWords = new Set([
@@ -280,12 +311,9 @@
     function isGrammarCandidate(token, tokens) {
       const word = normalizeWord(token.value);
       if (grammarWords.has(word)) return true;
-
       if (word.endsWith("s") && word.length > 2 && !word.endsWith("ss")) return true;
-
       const previous = tokens[token.index - 1];
       if (previous && normalizeWord(previous.value) === "to") return true;
-
       return false;
     }
 
@@ -438,7 +466,6 @@
         const button = document.getElementById(`level-${item}`);
         const isActive = item === level;
         button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
       });
 
       levelStatus.textContent = `${level}단계 선택됨`;
@@ -472,7 +499,9 @@
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
+      if (window.lucide) {
+        lucide.createIcons();
+      }
     });
   </script>
  </body>
