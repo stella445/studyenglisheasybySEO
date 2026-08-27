@@ -6,7 +6,6 @@
   <title>영어 본문 빈칸 채우기 학습기</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #182530;
@@ -24,7 +23,7 @@
       margin: 0;
       min-width: 320px;
       color: var(--ink);
-      font-family: "DM Sans", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: var(--paper);
     }
 
@@ -66,11 +65,6 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 3rem 1.25rem 4rem;
-    }
-
-    .display-font {
-      font-family: "Fraunces", serif;
-      letter-spacing: -0.04em;
     }
 
     .paper-panel {
@@ -186,7 +180,7 @@
       <span class="h-2.5 w-2.5 rounded-full bg-[#df6c51]" aria-hidden="true"></span>
       <span class="text-xs font-bold tracking-[0.18em] text-[#df6c51]">ENGLISH STUDY</span>
      </div>
-     <h1 class="display-font text-3xl font-bold leading-tight sm:text-4xl">영어 본문 빈칸 학습기</h1>
+     <h1 class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl">영어 본문 빈칸 학습기</h1>
      <p class="mt-3 max-w-2xl text-base leading-relaxed text-[#66717a]">본문을 입력하고 난이도를 선택하면 자동으로 빈칸 문제지를 만들어 줍니다.</p>
     </header>
 
@@ -200,8 +194,7 @@
 
      <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <p id="input-message" class="min-h-[1.25rem] text-sm font-medium text-[#a74131]" aria-live="polite"></p>
-      <button id="generate-button" class="action-button inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f766e] px-5 py-3 font-bold text-white shadow-md" type="button">
-       <i data-lucide="sparkles" style="width:18px;height:18px" aria-hidden="true"></i>
+      <button id="generate-button" class="action-button inline-flex items-center justify-center rounded-xl bg-[#0f766e] px-5 py-3 font-bold text-white shadow-md" type="button">
        <span>빈칸 문제 만들기</span>
       </button>
      </div>
@@ -233,11 +226,7 @@
     </section>
 
     <section id="empty-view" class="paper-panel mt-5 bg-[#182530] px-6 py-9 text-center text-white sm:px-10">
-     <div class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#28404d] text-[#f6c9af]" aria-hidden="true">
-      <i data-lucide="book-open-check" style="width:22px;height:22px"></i>
-     </div>
-     <h2 class="text-xl font-bold">아직 생성된 문제가 없습니다</h2>
-     <p class="mx-auto mt-2 max-w-md text-sm leading-relaxed text-gray-300">위 상자에 본문을 넣고 '빈칸 문제 만들기' 버튼을 눌러보세요!</p>
+     <h2 class="text-xl font-bold">위 상자에 본문을 입력하세요</h2>
     </section>
 
     <section id="quiz-view" class="hidden-view paper-panel mt-5 bg-[#fffcf4] p-5 sm:p-7">
