@@ -115,13 +115,21 @@
       overflow-wrap: break-word;
     }
 
+    /* 빈칸 요소 포장용 */
+    .blank-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0.2rem;
+      vertical-align: middle;
+    }
+
     .blank-input {
       display: inline-block;
       width: min(9rem, 45vw);
       min-width: 4.4rem;
       height: 2.2rem;
-      margin: 0 0.16rem;
-      padding: 0.1rem 0.45rem;
+      padding: 0.1rem 1.8rem 0.1rem 0.45rem;
       vertical-align: middle;
       border: 1px solid #9dbab2;
       border-radius: 0.42rem;
@@ -150,6 +158,61 @@
       background: #ffebe6;
       color: #9b3427;
       animation: nudge 0.25s ease-in-out;
+    }
+
+    /* 개별 정답 확인 버튼 */
+    .peek-btn {
+      position: absolute;
+      right: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0.1rem;
+      line-height: 1;
+      opacity: 0.6;
+      transition: opacity 0.15s ease;
+    }
+
+    .peek-btn:hover {
+      opacity: 1;
+    }
+
+    /* 개별 정답 말풍선 툴팁 */
+    .answer-tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.3rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 10;
+      display: none;
+    }
+
+    .answer-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 4px;
+      border-style: solid;
+      border-color: var(--ink) transparent transparent transparent;
+    }
+
+    .answer-tooltip.is-show {
+      display: block;
+      animation: reveal 0.2s ease;
     }
 
     .hidden-view { display: none !important; }
@@ -233,7 +296,7 @@
      <div class="flex flex-col gap-3 border-b border-[#e2dbcd] pb-4 sm:flex-row sm:items-start sm:justify-between">
       <div>
        <h2 class="text-xl font-bold">빈칸 채우기 연습</h2>
-       <p class="mt-1.5 text-sm text-[#66717a]">빈칸에 알맞은 단어를 입력하고 Enter를 누르세요.</p>
+       <p class="mt-1.5 text-sm text-[#66717a]">빈칸에 알맞은 단어를 입력하세요. (💡 버튼으로 개별 정답 확인 가능)</p>
       </div>
       <div id="progress-pill" class="shrink-0 rounded-full bg-[#e4f4ef] px-3 py-1.5 text-sm font-bold text-[#0f766e]">
        빈칸 0개
@@ -249,7 +312,7 @@
        </button>
        <button id="check-button" class="action-button inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#0f766e] px-4 py-3 font-bold text-white" type="button">
         <i data-lucide="check-circle-2" style="width:17px;height:17px" aria-hidden="true"></i>
-        <span>정답 확인</span>
+        <span>전체 정답 확인</span>
        </button>
       </div>
      </div>
@@ -390,6 +453,14 @@
           normalized: normalizeWord(token.value)
         });
 
+        // 빈칸 wrapper 및 요소 생성
+        const wrapper = document.createElement("span");
+        wrapper.className = "blank-wrapper";
+
+        const tooltip = document.createElement("div");
+        tooltip.className = "answer-tooltip";
+        tooltip.textContent = token.value;
+
         const input = document.createElement("input");
         input.type = "text";
         input.className = "blank-input";
@@ -398,11 +469,28 @@
         input.spellcheck = false;
         input.setAttribute("aria-label", `${answerIndex + 1}번째 빈칸`);
         input.dataset.answerIndex = String(answerIndex);
-        input.style.width = `${Math.min(Math.max(token.value.length + 1, 5), 12)}ch`;
+        input.style.width = `${Math.min(Math.max(token.value.length + 2, 6), 13)}ch`;
+
+        const peekBtn = document.createElement("button");
+        peekBtn.type = "button";
+        peekBtn.className = "peek-btn";
+        peekBtn.innerHTML = "💡";
+        peekBtn.title = "정답 확인";
+
+        // 개별 정답 토글 기능 (작성 중인 값 유지)
+        peekBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isShowing = tooltip.classList.contains("is-show");
+          document.querySelectorAll(".answer-tooltip").forEach(el => el.classList.remove("is-show"));
+          if (!isShowing) {
+            tooltip.classList.add("is-show");
+          }
+        });
 
         input.addEventListener("input", () => {
           validateInput(input, false);
           resultMessage.textContent = "";
+          tooltip.classList.remove("is-show");
         });
 
         input.addEventListener("keydown", event => {
@@ -413,7 +501,10 @@
           }
         });
 
-        fragment.appendChild(input);
+        wrapper.appendChild(tooltip);
+        wrapper.appendChild(input);
+        wrapper.appendChild(peekBtn);
+        fragment.appendChild(wrapper);
       });
 
       quizContent.replaceChildren(fragment);
@@ -472,6 +563,13 @@
       const firstWrong = inputs.find(input => !input.classList.contains("is-correct"));
       if (firstWrong) firstWrong.focus();
     }
+
+    // 화면 바깥 클릭시 정답 툴팁 닫기
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".blank-wrapper")) {
+        document.querySelectorAll(".answer-tooltip").forEach(el => el.classList.remove("is-show"));
+      }
+    });
 
     document.getElementById("generate-button").addEventListener("click", generateQuiz);
     document.getElementById("check-button").addEventListener("click", checkAnswers);
